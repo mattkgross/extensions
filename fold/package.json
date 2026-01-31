@@ -1,0 +1,72 @@
+{
+  "name": "ts-auto-fold",
+  "displayName": "TypeScript Auto-Fold",
+  "description": "Automatically folds TypeScript/TSX files when opened, showing method signatures while hiding implementation details",
+  "version": "1.0.0",
+  "publisher": "justai",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tsAutoFold.refold",
+        "title": "TypeScript: Re-fold All"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "tsAutoFold.refold",
+        "key": "ctrl+shift+[",
+        "mac": "cmd+shift+[",
+        "when": "editorTextFocus && (editorLangId == typescript || editorLangId == typescriptreact)"
+      }
+    ],
+    "configuration": {
+      "title": "TypeScript Auto-Fold",
+      "properties": {
+        "tsAutoFold.foldImports": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically fold import statement blocks"
+        },
+        "tsAutoFold.foldTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically fold type and interface bodies"
+        },
+        "tsAutoFold.foldFunctions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically fold function and method bodies"
+        },
+        "tsAutoFold.foldDelay": {
+          "type": "number",
+          "default": 100,
+          "minimum": 0,
+          "maximum": 5000,
+          "description": "Delay in milliseconds before folding after file opens"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.3.0"
+  }
+}
