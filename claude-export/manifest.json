@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Claude Export",
+  "version": "1.0.0",
+  "description": "Export Claude.ai conversations to Markdown files",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "claude-export@mattkgross",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://claude.ai/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
